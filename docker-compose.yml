@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: "./backend"
+      dockerfile: Dockerfile
+    ports:
+      - 5050:5050
+    container_name: backend-container
+    environment:
+      - WATCHPACK_POLLING=true
+    networks:
+      - mern-stack-network  
+    volumes:
+      - ./backend:/montaj
+    depends_on:
+      - fontend
+  fontend:
+    build:
+      context: "./clint"
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    container_name: fontend-container
+    environment:
+      - WATCHPACK_POLLING=true
+    networks:
+      - mern-stack-network  
+    volumes:
+      - ./clint:/montajfontend
+networks:
+  mern-stack-network:

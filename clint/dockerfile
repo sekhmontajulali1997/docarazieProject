@@ -1,0 +1,23 @@
+FROM node:16
+
+WORKDIR /montajfontend
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+RUN npm install @rollup/rollup-linux-x64-musl
+RUN ls -l /montajfontend/node_modules/@rollup
+
+# Copy the rest of the code
+COPY . .
+
+# Build the app
+RUN npm run build
+
+# Expose the port
+EXPOSE 3000
+
+# Run the command to start the development server
+CMD ["npm", "run", "dev"]

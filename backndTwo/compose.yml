@@ -1,0 +1,12 @@
+services:
+  backndtwo:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    ports: 
+        - 5050:5050
+    container_name: backendTwo-container    
+    environment:
+      - WATCHPACK_POLLING=true    
+    volumes:
+    - .:/backenTwodocker
